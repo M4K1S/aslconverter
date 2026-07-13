@@ -1,0 +1,30 @@
+# KiCad local/session files
+*.kicad_prl
+*-backups/
+*.bak
+
+# Gerber/temp output
+gerber_tmp/
+fabrication_tmp/
+
+# Arduino / ESP32 build files
+*.bin
+*.elf
+*.map
+*.hex
+*.uf2
+build/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# OS/editor files
+.DS_Store
+.vscode/
+
+# Secrets
+secrets.h
+.env
