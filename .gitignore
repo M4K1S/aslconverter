@@ -27,4 +27,5 @@ venv/
 
 # Secrets
 secrets.h
-.env
+.env.history/
+*.lck
