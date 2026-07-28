@@ -7,7 +7,7 @@
 	(title_block
 		(title "ASL Glove PCB")
 		(date "2026-07-14")
-		(rev "0")
+		(rev "1")
 		(company "Maxim Kisselev")
 	)
 	(lib_symbols
@@ -1640,14 +1640,6 @@
 		(uuid "5748937c-3b94-403b-b536-37654d5456e2")
 	)
 	(no_connect
-		(at 157.48 101.6)
-		(uuid "5ed44513-138b-4c69-9cb3-98fc574269a6")
-	)
-	(no_connect
-		(at 157.48 99.06)
-		(uuid "6f7f8b7d-d276-4d2c-b0ed-1f508d7b3f9b")
-	)
-	(no_connect
 		(at 124.46 71.12)
 		(uuid "7903bb6d-089f-4a92-92e3-85920b56c177")
 	)
@@ -1688,20 +1680,12 @@
 		(uuid "d2822cec-c338-431f-9064-2f7559e0f976")
 	)
 	(no_connect
-		(at 157.48 93.98)
-		(uuid "d39b1e10-345a-4142-9edb-a44ab7e10b4d")
-	)
-	(no_connect
 		(at 124.46 86.36)
 		(uuid "e42ab6aa-316e-45d0-add1-0bb9cc3f1223")
 	)
 	(no_connect
 		(at 124.46 111.76)
 		(uuid "ee00a2ab-93ab-416f-9774-b00212916645")
-	)
-	(no_connect
-		(at 157.48 96.52)
-		(uuid "ee54812b-9f4b-4899-8f11-e7745489a52c")
 	)
 	(no_connect
 		(at 124.46 73.66)
@@ -1793,6 +1777,16 @@
 	)
 	(wire
 		(pts
+			(xy 160.02 99.06) (xy 157.48 99.06)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "54623bee-8550-4ee2-aa96-c4ecec4689f9")
+	)
+	(wire
+		(pts
 			(xy 41.91 139.7) (xy 41.91 144.78)
 		)
 		(stroke
@@ -1810,6 +1804,16 @@
 			(type default)
 		)
 		(uuid "5ef94e3b-e320-458c-ad34-9f67267ebc88")
+	)
+	(wire
+		(pts
+			(xy 160.02 101.6) (xy 157.48 101.6)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "5fa2593c-9bdf-41a9-9c9f-c27b867b3752")
 	)
 	(wire
 		(pts
@@ -1833,6 +1837,16 @@
 	)
 	(wire
 		(pts
+			(xy 80.01 93.98) (xy 90.17 93.98)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "70feab87-a473-4666-be57-684afab2af8c")
+	)
+	(wire
+		(pts
 			(xy 179.07 97.79) (xy 189.23 97.79)
 		)
 		(stroke
@@ -1850,6 +1864,16 @@
 			(type default)
 		)
 		(uuid "7f1d6672-b901-4c75-8f07-4e3e0fd38b75")
+	)
+	(wire
+		(pts
+			(xy 80.01 72.39) (xy 90.17 72.39)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "83998027-ec86-42de-9d48-1674517d419d")
 	)
 	(wire
 		(pts
@@ -1893,6 +1917,16 @@
 	)
 	(wire
 		(pts
+			(xy 160.02 96.52) (xy 157.48 96.52)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b6289cd0-a0d9-4d45-bd85-bc0ead727048")
+	)
+	(wire
+		(pts
 			(xy 41.91 49.53) (xy 41.91 54.61)
 		)
 		(stroke
@@ -1900,6 +1934,36 @@
 			(type default)
 		)
 		(uuid "bfc02a66-9242-4594-9ddb-582bafee0375")
+	)
+	(wire
+		(pts
+			(xy 80.01 116.84) (xy 90.17 116.84)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d86dec3b-ce59-4dc5-80a6-4443f016fcc8")
+	)
+	(wire
+		(pts
+			(xy 80.01 49.53) (xy 90.17 49.53)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e17afe39-7768-462e-ba27-3ad9b6869b90")
+	)
+	(wire
+		(pts
+			(xy 160.02 93.98) (xy 157.48 93.98)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ec5c3937-6d3a-4c17-9214-1422f2bfb531")
 	)
 	(wire
 		(pts
@@ -1931,6 +1995,26 @@
 		)
 		(uuid "0aa1fcbb-5c1f-495d-8412-0859010f22b9")
 	)
+	(label "IM_Touch"
+		(at 160.02 99.06 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "31d36284-cb55-4c6d-b7a1-bfd508c8bf86")
+	)
+	(label "IM_Touch"
+		(at 80.01 72.39 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "39b3e74e-0721-4ce5-b64a-d8d361f3cc5a")
+	)
 	(label "MIDDLE_ADC"
 		(at 160.02 109.22 0)
 		(effects
@@ -1951,6 +2035,16 @@
 		)
 		(uuid "449ebe16-c2d8-42c2-af19-60e9c920204c")
 	)
+	(label "RP_Touch"
+		(at 80.01 116.84 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "452921a8-254a-4737-bbe0-af78835d66ea")
+	)
 	(label "THUMB_ADC"
 		(at 111.76 109.22 0)
 		(effects
@@ -1970,6 +2064,36 @@
 			(justify left bottom)
 		)
 		(uuid "4b294b48-b980-453c-92f2-524f31509773")
+	)
+	(label "MR_Touch"
+		(at 80.01 93.98 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "4c54a3fd-9eab-4da7-b434-5acc10dede5a")
+	)
+	(label "RP_Touch"
+		(at 160.02 93.98 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "5a7dfcd9-6fe5-4954-8bb0-c43b9c8318f7")
+	)
+	(label "MR_Touch"
+		(at 160.02 96.52 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "64b6bd2e-eaf9-44bf-963a-b146972e6887")
 	)
 	(label "PINKY_ADC"
 		(at 41.91 144.78 0)
@@ -2041,6 +2165,16 @@
 		)
 		(uuid "bb0d9b64-d6b3-40a7-90e3-7adfb8654293")
 	)
+	(label "TI_Touch"
+		(at 80.01 49.53 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "c7b57e35-fd5d-4140-8f70-826641bbca4f")
+	)
 	(label "I2C_SDA"
 		(at 179.07 100.33 0)
 		(effects
@@ -2060,6 +2194,16 @@
 			(justify left bottom)
 		)
 		(uuid "e639623d-1315-4162-bfac-a2496e3cbcf6")
+	)
+	(label "TI_Touch"
+		(at 160.02 101.6 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "ea01dd23-ff84-4866-b02e-effe46122c10")
 	)
 	(symbol
 		(lib_id "Connector_Generic:Conn_01x02")
@@ -2138,6 +2282,326 @@
 			(project "asl_glove_pcb"
 				(path "/dd09d9d8-74de-45af-9a0a-27a48cb67d37"
 					(reference "J5")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Connector_Generic:Conn_01x02")
+		(at 90.17 67.31 90)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "0afa1bb2-c4f0-4300-8efc-4e2f5fbea435")
+		(property "Reference" "J10"
+			(at 95.25 66.0399 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Value" "IM_Touch"
+			(at 95.25 68.5799 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical"
+			(at 90.17 67.31 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 90.17 67.31 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Generic connector, single row, 01x02, script generated (kicad-library-utils/schlib/autogen/connector/)"
+			(at 90.17 67.31 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "2"
+			(uuid "638fa1bc-a989-42d0-8cd4-ef4bb7ffdd50")
+		)
+		(pin "1"
+			(uuid "81f65126-6c80-49c2-8616-a7634136c87f")
+		)
+		(instances
+			(project "asl_glove_pcb"
+				(path "/dd09d9d8-74de-45af-9a0a-27a48cb67d37"
+					(reference "J10")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 92.71 116.84 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "0ceaa23d-ac30-4c5a-8ca9-ee7919d02150")
+		(property "Reference" "#PWR019"
+			(at 92.71 123.19 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "GND"
+			(at 92.71 121.92 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 92.71 116.84 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 92.71 116.84 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 92.71 116.84 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "7326b548-50b0-46ac-a97f-9d18b481067f")
+		)
+		(instances
+			(project "asl_glove_pcb"
+				(path "/dd09d9d8-74de-45af-9a0a-27a48cb67d37"
+					(reference "#PWR019")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Connector_Generic:Conn_01x02")
+		(at 90.17 111.76 90)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "10ead0cb-1d9f-4529-8e58-e2d108d47503")
+		(property "Reference" "J12"
+			(at 95.25 110.4899 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Value" "RP_Touch"
+			(at 95.25 113.0299 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical"
+			(at 90.17 111.76 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 90.17 111.76 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Generic connector, single row, 01x02, script generated (kicad-library-utils/schlib/autogen/connector/)"
+			(at 90.17 111.76 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "2"
+			(uuid "92adf4f7-7a7f-4334-a432-03c92ccc32e0")
+		)
+		(pin "1"
+			(uuid "4461fc17-ddf1-4341-a199-4515d1302cc2")
+		)
+		(instances
+			(project "asl_glove_pcb"
+				(path "/dd09d9d8-74de-45af-9a0a-27a48cb67d37"
+					(reference "J12")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 92.71 93.98 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "12a192ed-1c76-43e6-9e0b-92d764c7a24d")
+		(property "Reference" "#PWR018"
+			(at 92.71 100.33 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "GND"
+			(at 92.71 99.06 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 92.71 93.98 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 92.71 93.98 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 92.71 93.98 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "0d8dccaa-2c96-4db8-9a5b-145ff859fbc2")
+		)
+		(instances
+			(project "asl_glove_pcb"
+				(path "/dd09d9d8-74de-45af-9a0a-27a48cb67d37"
+					(reference "#PWR018")
 					(unit 1)
 				)
 			)
@@ -2674,6 +3138,84 @@
 		)
 	)
 	(symbol
+		(lib_id "power:GND")
+		(at 92.71 49.53 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "44068bce-9fd3-4437-8356-3fdc9999f2de")
+		(property "Reference" "#PWR016"
+			(at 92.71 55.88 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "GND"
+			(at 92.71 54.61 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 92.71 49.53 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 92.71 49.53 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 92.71 49.53 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "cbccb1a3-0978-43d4-8daa-550913408503")
+		)
+		(instances
+			(project "asl_glove_pcb"
+				(path "/dd09d9d8-74de-45af-9a0a-27a48cb67d37"
+					(reference "#PWR016")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "power:PWR_FLAG")
 		(at 157.48 114.3 180)
 		(unit 1)
@@ -2991,6 +3533,88 @@
 		)
 	)
 	(symbol
+		(lib_id "Connector_Generic:Conn_01x02")
+		(at 90.17 88.9 90)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "77912494-96c2-418d-8924-81bbe6a72809")
+		(property "Reference" "J11"
+			(at 95.25 87.6299 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Value" "MR_Touch"
+			(at 95.25 90.1699 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical"
+			(at 90.17 88.9 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 90.17 88.9 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Generic connector, single row, 01x02, script generated (kicad-library-utils/schlib/autogen/connector/)"
+			(at 90.17 88.9 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "2"
+			(uuid "63c9d7f9-1d22-4037-bb6b-cb38e5406178")
+		)
+		(pin "1"
+			(uuid "54128128-ed1f-40d1-a5ef-856277d53fd5")
+		)
+		(instances
+			(project "asl_glove_pcb"
+				(path "/dd09d9d8-74de-45af-9a0a-27a48cb67d37"
+					(reference "J11")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "power:+3.3V")
 		(at 57.15 72.39 180)
 		(unit 1)
@@ -3062,6 +3686,84 @@
 			(project "asl_glove_pcb"
 				(path "/dd09d9d8-74de-45af-9a0a-27a48cb67d37"
 					(reference "#PWR04")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 92.71 72.39 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "7ffbbe97-1fde-42f3-ae98-85796a68d842")
+		(property "Reference" "#PWR017"
+			(at 92.71 78.74 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "GND"
+			(at 92.71 77.47 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 92.71 72.39 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 92.71 72.39 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 92.71 72.39 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "625cfc03-2e5d-461f-bfe1-07c90d75051d")
+		)
+		(instances
+			(project "asl_glove_pcb"
+				(path "/dd09d9d8-74de-45af-9a0a-27a48cb67d37"
+					(reference "#PWR017")
 					(unit 1)
 				)
 			)
@@ -4401,6 +5103,88 @@
 			(project "asl_glove_pcb"
 				(path "/dd09d9d8-74de-45af-9a0a-27a48cb67d37"
 					(reference "#PWR011")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Connector_Generic:Conn_01x02")
+		(at 90.17 44.45 90)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "f3bcc774-d995-4d1c-86a9-7ee1702ae642")
+		(property "Reference" "J9"
+			(at 95.25 43.1799 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Value" "TI_Touch"
+			(at 95.25 45.7199 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical"
+			(at 90.17 44.45 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 90.17 44.45 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Generic connector, single row, 01x02, script generated (kicad-library-utils/schlib/autogen/connector/)"
+			(at 90.17 44.45 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "2"
+			(uuid "2b01a5bf-bcf8-456e-82ff-dc41b4af627b")
+		)
+		(pin "1"
+			(uuid "3ea96304-489f-4e82-ab3c-cc43603e51bf")
+		)
+		(instances
+			(project "asl_glove_pcb"
+				(path "/dd09d9d8-74de-45af-9a0a-27a48cb67d37"
+					(reference "J9")
 					(unit 1)
 				)
 			)

@@ -5,16 +5,16 @@
       "Application": "Pcbnew",
       "Version": "10.0.4"
     },
-    "CreationDate": "2026-07-15T14:49:10-04:00"
+    "CreationDate": "2026-07-27T22:22:34-04:00"
   },
   "GeneralSpecs": {
     "ProjectId": {
       "Name": "asl_glove_pcb",
       "GUID": "61736c5f-676c-46f7-9665-5f7063622e6b",
-      "Revision": "0"
+      "Revision": "1"
     },
     "Size": {
-      "X": 51.85,
+      "X": 55.85,
       "Y": 46.95
     },
     "LayerNumber": 2,
@@ -88,24 +88,29 @@
     },
     {
       "Type": "SolderMask",
+      "Thickness": 0.01,
       "Name": "Top Solder Mask"
     },
     {
       "Type": "Copper",
+      "Thickness": 0.035,
       "Name": "F.Cu"
     },
     {
       "Type": "Dielectric",
+      "Thickness": 1.51,
       "Material": "FR4",
       "Name": "F.Cu/B.Cu",
       "Notes": "Type: dielectric layer 1 (from F.Cu to B.Cu)"
     },
     {
       "Type": "Copper",
+      "Thickness": 0.035,
       "Name": "B.Cu"
     },
     {
       "Type": "SolderMask",
+      "Thickness": 0.01,
       "Name": "Bottom Solder Mask"
     },
     {

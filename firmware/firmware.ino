@@ -150,7 +150,7 @@ void setup() {
 
 
   // Flex sensor setup
-  analogSetAttenuation(ADC_2_5db);
+  analogSetAttenuation(ADC_6db);
 
   // Calibration - open hand
   Serial.println("Calibration, open/straighten hand, press ENTER");
