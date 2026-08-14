@@ -1,17 +1,12 @@
 #include <Wire.h>
 
-// Flex sensor pins
+// ---------------- Flex sensor pins ----------------
 const uint8_t thumbPin  = 1;
 const uint8_t indexPin  = 2;
 const uint8_t middlePin = 4;
 const uint8_t ringPin   = 5;
 const uint8_t pinkyPin  = 6;
 
-// MPU6050 pins
-const uint8_t sdaPin = 8;
-const uint8_t sclPin = 9;
-
-// Put all flex pins in one array
 const uint8_t flexPins[5] = {
   thumbPin,
   indexPin,
@@ -20,32 +15,50 @@ const uint8_t flexPins[5] = {
   pinkyPin
 };
 
-// Calibration variables for all 5 fingers
+// ---------------- Touch sensor pins ----------------
+// T-I, I-M, M-R, R-P (between-finger contact sensors)
+const uint8_t tiPin = 7;
+const uint8_t imPin = 15;
+const uint8_t mrPin = 16;
+const uint8_t rpPin = 17;
+
+const uint8_t touchPins[4] = {
+  tiPin,
+  imPin,
+  mrPin,
+  rpPin
+};
+
+// ---------------- MPU6050 pins ----------------
+const uint8_t sdaPin = 8;
+const uint8_t sclPin = 9;
+
+// ---------------- Flex calibration ----------------
 float acdStraight[5] = {0, 0, 0, 0, 0};
 float acdBend[5] = {0, 0, 0, 0, 0};
 
-// Filter variables for all 5 fingers
+// ---------------- Flex filter ----------------
 float filteredAdc[5] = {0, 0, 0, 0, 0};
 const float alpha = 0.15;
 
-// MPU6050 registers
+// ---------------- MPU6050 registers ----------------
 const uint8_t MPU_ADDR     = 0x68;
 const uint8_t WHO_AM_I     = 0x75;
 const uint8_t PWR_MGMT_1   = 0x6B;
 const uint8_t ACCEL_XOUT_H = 0x3B;
 
-// MPU6050 scale factors
+// ---------------- MPU6050 scale factors ----------------
 const float ACCEL_SCALE = 16384.0;
 const float GYRO_SCALE  = 131.0;
 
-// Raw MPU6050 sensor values
+// ---------------- Raw / converted MPU6050 values ----------------
 int16_t accelRaw[3] = {0, 0, 0};
-int16_t gyroRaw[3] = {0, 0, 0};
+int16_t gyroRaw[3]  = {0, 0, 0};
 
-// Converted MPU6050 sensor values
-float accelG[3] = {0.0, 0.0, 0.0};
+float accelG[3]  = {0.0, 0.0, 0.0};
 float gyroDps[3] = {0.0, 0.0, 0.0};
 
+// ---------------- MPU6050 helpers ----------------
 void writeRegister(uint8_t reg, uint8_t value) {
   Wire.beginTransmission(MPU_ADDR);
   Wire.write(reg);
@@ -97,13 +110,14 @@ bool readMPU6050Burst() {
   gyroRaw[2] = combineBytes(data[12], data[13]);
 
   for (int i = 0; i < 3; i++) {
-    accelG[i] = accelRaw[i] / ACCEL_SCALE;
+    accelG[i]  = accelRaw[i] / ACCEL_SCALE;
     gyroDps[i] = gyroRaw[i] / GYRO_SCALE;
   }
 
   return true;
 }
 
+// ---------------- Utility ----------------
 void waitForUser() {
   while (Serial.available() > 0) {
     Serial.read();
@@ -126,11 +140,17 @@ float mapToPercentage(float x, float in_min, float in_max) {
   return (x - in_min) * 100.0 / (in_max - in_min);
 }
 
+// Reads a touch pin and returns 1 if fingers are touching, 0 if apart.
+// INPUT_PULLUP means: open = HIGH, touching (shorted to GND) = LOW.
+int readTouch(uint8_t pin) {
+  return (digitalRead(pin) == LOW) ? 1 : 0;
+}
+
 void setup() {
   Serial.begin(115200);
   delay(1000);
 
-  // MPU6050 setup
+  // ---------------- MPU6050 setup ----------------
   Wire.begin(sdaPin, sclPin);
   Wire.setClock(400000);
 
@@ -148,8 +168,12 @@ void setup() {
   writeRegister(PWR_MGMT_1, 0x00);
   delay(100);
 
+  // ---------------- Touch sensor setup ----------------
+  for (int i = 0; i < 4; i++) {
+    pinMode(touchPins[i], INPUT_PULLUP);
+  }
 
-  // Flex sensor setup
+  // ---------------- Flex sensor setup ----------------
   analogSetAttenuation(ADC_6db);
 
   // Calibration - open hand
@@ -201,7 +225,7 @@ void setup() {
     filteredAdc[finger] = analogRead(flexPins[finger]);
   }
 
-  Serial.println("thumb,index,middle,ring,pinky,accelX,accelY,accelZ,gyroX,gyroY,gyroZ");
+  Serial.println("thumb,index,middle,ring,pinky,ti,im,mr,rp,accelX,accelY,accelZ,gyroX,gyroY,gyroZ");
 }
 
 void loop() {
@@ -213,6 +237,7 @@ void loop() {
     return;
   }
 
+  // ---------------- Flex sensors ----------------
   float bendPercentage[5];
 
   for (int finger = 0; finger < 5; finger++) {
@@ -229,6 +254,14 @@ void loop() {
     bendPercentage[finger] = constrain(bendPercentage[finger], 0.0, 100.0);
   }
 
+  // ---------------- Touch sensors ----------------
+  int touchState[4];
+  for (int i = 0; i < 4; i++) {
+    touchState[i] = readTouch(touchPins[i]);
+  }
+
+  // ---------------- Serial output ----------------
+  // thumb,index,middle,ring,pinky,ti,im,mr,rp,accelX,accelY,accelZ,gyroX,gyroY,gyroZ
   Serial.print(bendPercentage[0], 1);
   Serial.print(",");
   Serial.print(bendPercentage[1], 1);
@@ -238,6 +271,15 @@ void loop() {
   Serial.print(bendPercentage[3], 1);
   Serial.print(",");
   Serial.print(bendPercentage[4], 1);
+  Serial.print(",");
+
+  Serial.print(touchState[0]);
+  Serial.print(",");
+  Serial.print(touchState[1]);
+  Serial.print(",");
+  Serial.print(touchState[2]);
+  Serial.print(",");
+  Serial.print(touchState[3]);
   Serial.print(",");
 
   Serial.print(accelG[0], 3);
