@@ -34,13 +34,14 @@ const uint8_t sdaPin = 8;
 const uint8_t sclPin = 9;
 
 // ---------------- Flex calibration ----------------
-float acdStraight[5] = {0, 0, 0, 0, 0};
-float acdBend[5] = {0, 0, 0, 0, 0};
-float bendPercentage[5] = {0, 0, 0, 0, 0};
+float acdStraight[5]     = {0, 0, 0, 0, 0};
+float acdBend[5]         = {0, 0, 0, 0, 0};
+float bendPercentage[5]  = {0, 0, 0, 0, 0};
 
 // ---------------- Flex filter ----------------
 float filteredAdc[5] = {0, 0, 0, 0, 0};
 const float alpha = 0.15;
+const int spikeRejectThreshold = 500; // ignore raw ADC jumps larger than this in one read
 
 // ---------------- MPU6050 registers ----------------
 const uint8_t MPU_ADDR     = 0x68;
@@ -56,8 +57,8 @@ const float GYRO_SCALE  = 131.0;
 int16_t accelRaw[3] = {0, 0, 0};
 int16_t gyroRaw[3]  = {0, 0, 0};
 
-float accelG[3]  = {0.0, 0.0, 0.0};
-float gyroDps[3] = {0.0, 0.0, 0.0};
+float accelG[3]      = {0.0, 0.0, 0.0};
+float gyroDps[3]     = {0.0, 0.0, 0.0};
 float accelOffset[3] = {0.0, 0.0, 0.0};
 
 // ---------------- MPU6050 helpers ----------------
@@ -176,9 +177,9 @@ void setup() {
   }
 
   // ---------------- Flex sensor setup ----------------
-  analogSetAttenuation(ADC_6db);
+  analogSetAttenuation(ADC_11db);
 
-  // Calibration - open hand
+  // ---- Calibration step 1: open hand (straight reference, all 5 fingers) ----
   Serial.println("Calibration, open/straighten hand, press ENTER");
   waitForUser();
 
@@ -200,33 +201,50 @@ void setup() {
     Serial.println(acdStraight[finger], 1);
   }
 
-  // Calibration - closed fist
-  Serial.println("Calibration, close fist/bend fingers, press ENTER");
+  // ---- Calibration step 2: close fingers only, thumb stays straight ----
+  Serial.println("Calibration, curl index/middle/ring/pinky (keep thumb straight), press ENTER");
   waitForUser();
 
-  long sumBent[5] = {0, 0, 0, 0, 0};
+  long sumBentFingers[5] = {0, 0, 0, 0, 0};
 
   for (int i = 0; i < 30; i++) {
-    for (int finger = 0; finger < 5; finger++) {
-      sumBent[finger] += analogRead(flexPins[finger]);
+    for (int finger = 1; finger < 5; finger++) { // index=1 through pinky=4, skip thumb
+      sumBentFingers[finger] += analogRead(flexPins[finger]);
     }
     delay(15);
   }
 
-  for (int finger = 0; finger < 5; finger++) {
-    acdBend[finger] = (float)sumBent[finger] / 30.0;
+  for (int finger = 1; finger < 5; finger++) {
+    acdBend[finger] = (float)sumBentFingers[finger] / 30.0;
   }
 
-  Serial.println("Saved Bent References:");
-  for (int finger = 0; finger < 5; finger++) {
+  Serial.println("Saved Finger Bent References (index, middle, ring, pinky):");
+  for (int finger = 1; finger < 5; finger++) {
     Serial.println(acdBend[finger], 1);
   }
+
+  // ---- Calibration step 3: close thumb only ----
+  Serial.println("Calibration, curl thumb only, press ENTER");
+  waitForUser();
+
+  long sumBentThumb = 0;
+
+  for (int i = 0; i < 30; i++) {
+    sumBentThumb += analogRead(flexPins[0]); // thumb = index 0
+    delay(15);
+  }
+
+  acdBend[0] = (float)sumBentThumb / 30.0;
+
+  Serial.println("Saved Thumb Bent Reference:");
+  Serial.println(acdBend[0], 1);
 
   // Seed filters
   for (int finger = 0; finger < 5; finger++) {
     filteredAdc[finger] = analogRead(flexPins[finger]);
   }
 
+  // ---- Accel calibration ----
   Serial.println("Accel calibration, hold hand flat in front of body, press ENTER");
   waitForUser();
 
@@ -250,7 +268,7 @@ void setup() {
   Serial.println(accelOffset[2], 3);
 
   Serial.println("thumb,index,middle,ring,pinky,ti,im,mr,rp,accelX,accelY,accelZ,gyroX,gyroY,gyroZ");
-  }
+}
 
 void loop() {
   bool success = readMPU6050Burst();
@@ -262,16 +280,15 @@ void loop() {
   }
 
   // ---------------- Flex sensors ----------------
-
   for (int finger = 0; finger < 5; finger++) {
     int rawValue = analogRead(flexPins[finger]);
+    bool isValidReading = (rawValue > 0) && (abs(rawValue - filteredAdc[finger]) < spikeRejectThreshold);
 
-    if (rawValue > 0) {
-    filteredAdc[finger] = (alpha * (float)rawValue) + ((1.0 - alpha) * filteredAdc[finger]);
-    bendPercentage[finger] = mapToPercentage(filteredAdc[finger], acdStraight[finger], acdBend[finger]);
-    bendPercentage[finger] = constrain(bendPercentage[finger], 0.0, 100.0);
+    if (isValidReading) {
+      filteredAdc[finger] = (alpha * (float)rawValue) + ((1.0 - alpha) * filteredAdc[finger]);
+      bendPercentage[finger] = mapToPercentage(filteredAdc[finger], acdStraight[finger], acdBend[finger]);
+      bendPercentage[finger] = constrain(bendPercentage[finger], 0.0, 100.0);
     }
-
   }
 
   // ---------------- Touch sensors ----------------
@@ -282,36 +299,23 @@ void loop() {
 
   // ---------------- Serial output ----------------
   // thumb,index,middle,ring,pinky,ti,im,mr,rp,accelX,accelY,accelZ,gyroX,gyroY,gyroZ
-  Serial.print(bendPercentage[0], 1);
-  Serial.print(",");
-  Serial.print(bendPercentage[1], 1);
-  Serial.print(",");
-  Serial.print(bendPercentage[2], 1);
-  Serial.print(",");
-  Serial.print(bendPercentage[3], 1);
-  Serial.print(",");
-  Serial.print(bendPercentage[4], 1);
-  Serial.print(",");
+  Serial.print(bendPercentage[0], 1); Serial.print(",");
+  Serial.print(bendPercentage[1], 1); Serial.print(",");
+  Serial.print(bendPercentage[2], 1); Serial.print(",");
+  Serial.print(bendPercentage[3], 1); Serial.print(",");
+  Serial.print(bendPercentage[4], 1); Serial.print(",");
 
-  Serial.print(touchState[0]);
-  Serial.print(",");
-  Serial.print(touchState[1]);
-  Serial.print(",");
-  Serial.print(touchState[2]);
-  Serial.print(",");
-  Serial.print(touchState[3]);
-  Serial.print(",");
 
-  Serial.print(accelG[0] - accelOffset[0], 3); 
-  Serial.print(",");
-  Serial.print(accelG[1] - accelOffset[1], 3); 
-  Serial.print(",");
-  Serial.print(accelG[2] - accelOffset[2], 3); 
-  Serial.print(",");
-  Serial.print(gyroDps[0], 2);
-  Serial.print(",");
-  Serial.print(gyroDps[1], 2);
-  Serial.print(",");
+  Serial.print(touchState[0]); Serial.print(",");
+  Serial.print(touchState[1]); Serial.print(",");
+  Serial.print(touchState[2]); Serial.print(",");
+  Serial.print(touchState[3]); Serial.print(",");
+
+  Serial.print(accelG[0] - accelOffset[0], 3); Serial.print(",");
+  Serial.print(accelG[1] - accelOffset[1], 3); Serial.print(",");
+  Serial.print(accelG[2] - accelOffset[2], 3); Serial.print(",");
+  Serial.print(gyroDps[0], 2); Serial.print(",");
+  Serial.print(gyroDps[1], 2); Serial.print(",");
   Serial.println(gyroDps[2], 2);
 
   delay(30);
